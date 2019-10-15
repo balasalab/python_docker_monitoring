@@ -1,0 +1,61 @@
+{
+	"node":3,
+	"manager":3,
+	"worker":0,
+	"container":{
+	  "container_name_1":{
+	    "exec_cmd":"ls -ltr"
+	  },
+	  "container_name_2":{
+	    "exec_cmd":"curl -Is https://example.com/shop/ | head -1"
+	  },
+	  "container_name_3":{
+	  	"exec_cmd":"/opt/kafka/bin/kafka-topics.sh --list --zookeeper zookeeper1:2181,zookeeper2:2181,zookeeper3:2181"
+	  }
+	},
+	"service":{
+		"helloworld":{
+			"replicas":3
+		},
+		"kafka_broker2":{
+			"replicas" : 1
+		},
+		"kafka_broker1":{
+			"replicas" : 1
+		},
+		"kafka_zookeeper2":{
+			"replicas" : 1
+		},
+		"service_haproxy":{
+			"replicas" : "None"
+		},
+		"kafka_zookeeper1":{
+			"replicas" : 1
+		},
+		"service_streamprocessor":{
+			"replicas" : 1
+		},
+		"service_api":{
+			"replicas" : 1
+		}
+	},
+	"hostname":"192.168.4.224",
+	"port":"2376",
+	"container_check":1,
+	"service_check":1,
+	"custom_command_run":0,
+	"mail":{
+		"notification":1,
+		"sender_email":"sendermail@gmail.in",
+		"email_subject":"Docker monitor status",
+		"receivers_email":["receiver1@gmail.in", "receiver2@gmail.in"],
+		"sender_password":"password",
+		"smtp_host":"smtp.gmail.com",
+		"smtp_port":587
+	},
+	"logging":{
+		"enable":1,
+		"type":"console",
+		"file_name":"/var/log/doc_monitor"
+	}
+}
